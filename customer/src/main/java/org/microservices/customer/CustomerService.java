@@ -32,7 +32,7 @@ public record CustomerService(CustomerRepository customerRepository,
                             .email(request.email())
                             .build();
         customerRepository.saveAndFlush(customer);
-        var fraudResponse = restTemplate.getForObject("http://localhost:8081/api/v1/fraud/{customeId}",
+        var fraudResponse = restTemplate.getForObject("http://FRAUD/api/v1/fraud/{customeId}",
                                     FraudResponse.class,
                                     customer.getId());
         if(fraudResponse.isFraudster()){
